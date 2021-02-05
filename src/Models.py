@@ -7,7 +7,7 @@ class MindReader(tf.keras.Model):
 		self.d1 = Dense(units=out_dim)
 		self.sm = Softmax()
 
-	def call(self, inputs: tf.Tensor) -> tf.Tensor:
+	def call(self, inputs: tf.Tensor, softmax: bool = True) -> tf.Tensor:
 		"""
 		NN forward pass
 		Args:
@@ -16,4 +16,4 @@ class MindReader(tf.keras.Model):
 		Returns: shape [mb_size, out_dim]
 		"""
 		z = self.d1(inputs)
-		return self.sm(z)
+		return self.sm(z) if softmax else z
